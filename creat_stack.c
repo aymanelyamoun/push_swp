@@ -78,11 +78,11 @@ void	print_stack(t_list *stack)
 	if (stack == NULL)
 		return;
 	tmp = stack->next;
-	printf("%d\n", tmp->data);
+	printf("%d ----> index: %d\n", tmp->data, tmp->index);
 	tmp = tmp->next;
 	while (tmp != stack->next)
 	{
-		printf("%d\n", tmp->data);
+		printf("%d ----> index: %d\n", tmp->data, tmp->index);
 		tmp = tmp->next;
 	}
 }
@@ -102,14 +102,49 @@ void	print_stack_prev(t_list *stack)
 	}
 }
 
-void give_index(t_list **stack)
+int compare(t_list *stack, int data)
 {
+	t_list *tmp;
+	int index;
 
+	index = 0;
+	tmp = stack->next;
+	if (tmp->data < data)
+		index++;
+	tmp = tmp->next;
+	while (tmp != stack->next)
+	{
+		if (tmp->data < data)
+			index++;
+		tmp = tmp->next;
+	}
+	return index;
 }
 
+void give_index(t_list **stack)
+{
+	t_list *tmp;
+	int index;
 
-
-
+	tmp = (*stack)->next;
+	index = compare(tmp, tmp->data);
+	tmp->index = index;
+	tmp = tmp->next;
+	while (tmp != (*stack)->next)
+	{
+		index = compare(tmp, tmp->data);
+		tmp->index = index;
+		tmp = tmp->next;
+	}
+}
+void push_all_to_b(t_list **stack_a, t_list **stack_b)
+{
+	while (*stack_a != NULL)
+	{
+		pb(stack_a, stack_b);
+	}
+	
+}
 
 int	main(int argc, char **argv)
 {
@@ -119,18 +154,21 @@ int	main(int argc, char **argv)
 	print_stack(stack_a);
 	// ra(&stack_b);
 	
+	// printf("___________________________\n");
+	// // print_stack_prev(stack_a);
+	// // rra(&stack_a);
+	// // ra(&stack_a);
+	// // ra(&stack_a);
+	// // printf("???????? revers ????????\n");
+	// // print_stack_prev(stack_a);
+	// // push(&stack_a, &stack_b);
+	// // push(&stack_a, &stack_b);
 	printf("___________________________\n");
-	print_stack_prev(stack_a);
-	// rra(&stack_a);
-	// ra(&stack_a);
-	// ra(&stack_a);
-	// printf("???????? revers ????????\n");
-	// print_stack_prev(stack_a);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	printf("___________________________\n");
-	print_stack_prev(stack_a);
-	printf("___________________________\n");
+	// // print_stack_prev(stack_a);
+	give_index(&stack_a);
+	print_stack(stack_a);
+	push_all_to_b(&stack_a, &stack_b);
+	// printf("___________________________\n");
 	print_stack(stack_b);
 
 }

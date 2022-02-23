@@ -30,4 +30,15 @@ void	rrb(t_list **stack_b);
 
 /*///////// END ROTATION /////////*/
 
+/*///////// PUSHING //////////////*/
+
 int push(t_list **from, t_list **to);
+void pa(t_list **stack_b, t_list **stack_a);
+void pb(t_list **stack_a, t_list **stack_b);
+
+/*///////// END PUSHING //////////*/
+
+/*/////// SORTING FUNCTIONS ///////*/
+
+int compare(t_list *stack, int data);
+void give_index(t_list **stack);

@@ -96,6 +96,17 @@ int push(t_list **from, t_list **to)
 	return 1;
 }
 
+void pa(t_list **stack_b, t_list **stack_a)
+{
+	if (push(stack_b, stack_a))
+		write(1, "pa\n", 3);
+}
+
+void pb(t_list **stack_a, t_list **stack_b)
+{
+	if (push(stack_a, stack_b))
+		write(1, "pb\n", 3);
+}
 
 
 
