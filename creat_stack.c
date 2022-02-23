@@ -102,7 +102,10 @@ void	print_stack_prev(t_list *stack)
 	}
 }
 
+void give_index(t_list **stack)
+{
 
+}
 
 
 
@@ -117,12 +120,17 @@ int	main(int argc, char **argv)
 	// ra(&stack_b);
 	
 	printf("___________________________\n");
-	print_stack(stack_a);
-	printf("???????? revers ????????\n");
 	print_stack_prev(stack_a);
-	// push(&stack_a, &stack_b);
-	// push(&stack_a, &stack_b);
+	// rra(&stack_a);
+	// ra(&stack_a);
+	// ra(&stack_a);
+	// printf("???????? revers ????????\n");
+	// print_stack_prev(stack_a);
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
 	printf("___________________________\n");
-	// print_stack(stack_b);
+	print_stack_prev(stack_a);
+	printf("___________________________\n");
+	print_stack(stack_b);
 
 }

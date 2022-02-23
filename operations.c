@@ -50,13 +50,13 @@ int	r_rotate(t_list **stack)
 void	rra(t_list **stack_a)
 {
 	if (r_rotate(stack_a))
-		write(1, "ra\n", 3);
+		write(1, "rra\n", 4);
 }
 
 void	rrb(t_list **stack_b)
 {
 	if(r_rotate(stack_b))
-		write(1, "rb\n", 3);
+		write(1, "rrb\n", 4);
 }
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -77,16 +77,20 @@ int push(t_list **from, t_list **to)
 		(*from) = NULL;
 	else
 	{
+		(*from)->next->next->prev = (*from);
 		(*from)->next = (*from)->next->next;
 	}
 	if (count_len(*to) == 0)
 	{
 		tmp->next = tmp;
+		tmp->prev = tmp;
 		*to = tmp;
 	}
 	else
 	{
 		tmp->next = (*to)->next;
+		tmp->next->prev = tmp;
+		tmp->prev = (*to);
 		(*to)->next = tmp;
 	}
 	return 1;
