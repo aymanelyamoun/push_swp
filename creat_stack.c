@@ -38,6 +38,7 @@ int count_len(t_list *stack)
 void	add_at_end(t_list **stack, int data)
 {
 	t_list *tmp;
+	t_list *end;
 
 	if (*stack == NULL)
 	{
@@ -51,7 +52,9 @@ void	add_at_end(t_list **stack, int data)
 		tmp = creat_node(data);
 		tmp->next = (*stack)->next;
 		(*stack)->next = tmp;
+		tmp->prev = (*stack);
 		(*stack) = tmp;
+		tmp->next->prev = tmp;
 	}
 }
 
@@ -82,7 +85,21 @@ void	print_stack(t_list *stack)
 		printf("%d\n", tmp->data);
 		tmp = tmp->next;
 	}
-	
+}
+void	print_stack_prev(t_list *stack)
+{
+	t_list *tmp;
+
+	if (stack == NULL)
+		return;
+	tmp = stack;
+	printf("%d\n", tmp->data);
+	tmp = tmp->prev;
+	while (tmp != stack)
+	{
+		printf("%d\n", tmp->data);
+		tmp = tmp->prev;
+	}
 }
 
 
@@ -97,13 +114,15 @@ int	main(int argc, char **argv)
 	t_list *stack_b;
 	stack_a = creat_stack(argc, argv);
 	print_stack(stack_a);
-	ra(&stack_b);
+	// ra(&stack_b);
 	
 	printf("___________________________\n");
 	print_stack(stack_a);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
+	printf("???????? revers ????????\n");
+	print_stack_prev(stack_a);
+	// push(&stack_a, &stack_b);
+	// push(&stack_a, &stack_b);
 	printf("___________________________\n");
-	print_stack(stack_b);
+	// print_stack(stack_b);
 
 }
