@@ -137,37 +137,31 @@ void give_index(t_list **stack)
 		tmp = tmp->next;
 	}
 }
-void push_all_to_b(t_list **stack_a, t_list **stack_b)
-{
-	while (*stack_a != NULL)
-	{
-		pb(stack_a, stack_b);
-	}
-	
-}
+
 
 int	main(int argc, char **argv)
 {
 	t_list *stack_a;
 	t_list *stack_b;
 	stack_a = creat_stack(argc, argv);
-	print_stack(stack_a);
-	// ra(&stack_b);
-	
-	// printf("___________________________\n");
-	// // print_stack_prev(stack_a);
-	// // rra(&stack_a);
-	// // ra(&stack_a);
-	// // ra(&stack_a);
-	// // printf("???????? revers ????????\n");
-	// // print_stack_prev(stack_a);
-	// // push(&stack_a, &stack_b);
-	// // push(&stack_a, &stack_b);
+	int *arr;
+	int i = 0;
+
 	printf("___________________________\n");
 	// // print_stack_prev(stack_a);
 	give_index(&stack_a);
 	print_stack(stack_a);
-	push_all_to_b(&stack_a, &stack_b);
+	printf("___________________________\n");
+	
+	push_swap(&stack_a, &stack_b);
+	// arr = helper_small(stack_a);
+	// while (i < 4)
+	// {
+	// 	printf("%d\n", arr[i++]);
+	// }
+	printf("___________________________\n");
+	printf("pirnting stack A\n");
+	// push_all_to_b(&stack_a, &stack_b);
 	// printf("___________________________\n");
 	print_stack(stack_b);
 

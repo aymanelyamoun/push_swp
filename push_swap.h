@@ -42,3 +42,9 @@ void pb(t_list **stack_a, t_list **stack_b);
 
 int compare(t_list *stack, int data);
 void give_index(t_list **stack);
+void push_swap(t_list **stack_a, t_list **stack_b);
+
+/*/////////// HELPING /////////////*/
+int *helper_small(t_list *stack);
+int has_smaller_low(t_list *stack, int num);
+int has_smaller_high(t_list *stack, int num);
