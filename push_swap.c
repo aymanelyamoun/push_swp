@@ -41,6 +41,160 @@ int has_smaller_high(t_list *stack, int num)
 	}
 	return -1;
 }
+/*/////////////////////////////*/
+int	find_the_smallest(t_list *stack)
+{
+	t_list *tmp;
+	int	largest;
+
+	if (stack != NULL)
+	{
+		tmp = stack->next;
+		largest = tmp->index;
+		tmp = tmp->next;
+		while(tmp != stack->next)
+		{
+			if (tmp->index < largest)
+				largest = tmp->index;
+			tmp = tmp->next;
+		}
+		return largest;
+	}
+	else
+		return -1;
+}
+
+int	find_the_smallest_high(t_list *stack)
+{
+	t_list *tmp;
+	int	largest;
+	int index;
+
+	if (stack != NULL)
+	{
+		index = 0;
+		tmp = stack->next;
+		largest = tmp->index;
+		tmp = tmp->next;
+		while(tmp != stack->next)
+		{
+			if (tmp->index < largest)
+			{
+				largest = tmp->index;
+				index++;
+			}
+			tmp = tmp->next;
+		}
+		return index;
+	}
+	else
+		return -1;
+}
+
+int	find_the_smallest_low(t_list *stack)
+{
+	t_list *tmp;
+	int	largest;
+	int index;
+
+	if (stack != NULL)
+	{
+		index = 0;
+		tmp = stack;
+		largest = tmp->index;
+		tmp = tmp->prev;
+		while(tmp != stack)
+		{
+			if (tmp->index < largest)
+			{
+				largest = tmp->index;
+				index++;
+			}
+			tmp = tmp->prev;
+		}
+		return index;
+	}
+	else
+		return -1;
+}
+/*/////////////////////////////*/
+int	find_the_bigest(t_list *stack)
+{
+	t_list *tmp;
+	int	largest;
+
+	if (stack != NULL)
+	{
+		tmp = stack->next;
+		largest = tmp->index;
+		tmp = tmp->next;
+		while(tmp != stack->next)
+		{
+			if (tmp->index > largest)
+				largest = tmp->index;
+			tmp = tmp->next;
+		}
+		return largest;
+	}
+	else
+		return -1;
+}
+
+int	find_the_bigest_high(t_list *stack)
+{
+	t_list *tmp;
+	int	largest;
+	int index;
+
+	if (stack != NULL)
+	{
+		index = 0;
+		tmp = stack->next;
+		largest = tmp->index;
+		tmp = tmp->next;
+		while(tmp != stack->next)
+		{
+			if (tmp->index > largest)
+			{
+				largest = tmp->index;
+				index++;
+			}
+			tmp = tmp->next;
+		}
+		return index;
+	}
+	else
+		return -1;
+}
+
+int	find_the_bigest_low(t_list *stack)
+{
+	t_list *tmp;
+	int	largest;
+	int index;
+
+	if (stack != NULL)
+	{
+		index = 0;
+		tmp = stack;
+		largest = tmp->index;
+		tmp = tmp->prev;
+		while(tmp != stack)
+		{
+			if (tmp->index > largest)
+			{
+				largest = tmp->index;
+				index++;
+			}
+			tmp = tmp->prev;
+		}
+		return index;
+	}
+	else
+		return -1;
+}
+/*//////////////////////////////*/
+
 int has_smaller_low(t_list *stack, int num)
 {
 	t_list *tmp;
@@ -92,3 +246,67 @@ void push_swap(t_list **stack_a, t_list **stack_b)
 	}
 	
 }
+void sort_last_in_a(t_list **stack_a, t_list **stack_b)
+{
+	int largest;
+
+	while(*stack_a != NULL)
+	{
+		largest = find_the_smallest(*stack_a);
+		while((*stack_a)->next->index != largest)
+		{
+			if (find_the_smallest_high(*stack_a) < find_the_smallest_low(*stack_a))
+			{
+				while((*stack_a)->next->index != largest)
+				{
+					ra(stack_a);
+				}
+			}
+			else
+			{
+				while((*stack_a)->next->index != largest)
+				{
+					rra(stack_a);
+				}
+			}
+		}
+		pb(stack_a, stack_b);
+	}
+}
+//kinda sus
+void sort_to_a(t_list **stack_b, t_list **stack_a)
+{
+	int largest;
+
+	while(*stack_b != NULL)
+	{
+		largest = find_the_bigest(*stack_b);
+		while((*stack_b)->next->index != largest)
+		{
+			if (find_the_bigest_high(*stack_b) < find_the_bigest_low(*stack_b))
+			{
+				while((*stack_b)->next->index != largest)
+				{
+					rb(stack_b);
+				}
+			}
+			else
+			{
+				while((*stack_b)->next->index != largest)
+				{
+					rrb(stack_b);
+				}
+			}
+		}
+		pa(stack_b, stack_a);
+	}
+}
+
+///// check the find the biggest return value
+
+
+
+
+
+
+

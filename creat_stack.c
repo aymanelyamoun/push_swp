@@ -147,22 +147,29 @@ int	main(int argc, char **argv)
 	int *arr;
 	int i = 0;
 
-	printf("___________________________\n");
+	// printf("___________________________\n");
 	// // print_stack_prev(stack_a);
-	give_index(&stack_a);
-	print_stack(stack_a);
-	printf("___________________________\n");
+	// print_stack(stack_a);
+	// printf("___________________________\n");
 	
+	give_index(&stack_a);
 	push_swap(&stack_a, &stack_b);
+	sort_last_in_a(&stack_a, &stack_b);
+	sort_to_a(&stack_b, &stack_a);
 	// arr = helper_small(stack_a);
 	// while (i < 4)
 	// {
 	// 	printf("%d\n", arr[i++]);
 	// }
-	printf("___________________________\n");
-	printf("pirnting stack A\n");
+	// printf("___________________________\n");
+	// printf("pirnting stack A\n");
 	// push_all_to_b(&stack_a, &stack_b);
 	// printf("___________________________\n");
-	print_stack(stack_b);
+	// print_stack(stack_a);
+	// printf("___________________________\n");
+	// printf("pirnting stack B\n");
+	// push_all_to_b(&stack_a, &stack_b);
+	// printf("___________________________\n");
+	// print_stack(stack_b);
 
 }

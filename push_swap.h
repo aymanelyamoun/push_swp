@@ -43,8 +43,16 @@ void pb(t_list **stack_a, t_list **stack_b);
 int compare(t_list *stack, int data);
 void give_index(t_list **stack);
 void push_swap(t_list **stack_a, t_list **stack_b);
+void sort_last_in_a(t_list **stack_a, t_list **stack_b);
+void sort_to_a(t_list **stack_b, t_list **stack_a);
 
 /*/////////// HELPING /////////////*/
 int *helper_small(t_list *stack);
 int has_smaller_low(t_list *stack, int num);
 int has_smaller_high(t_list *stack, int num);
+int	find_the_smallest(t_list *stack);
+int	find_the_smallest_high(t_list *stack);
+int	find_the_smallest_low(t_list *stack);
+int	find_the_bigest(t_list *stack);
+int	find_the_bigest_high(t_list *stack);
+int	find_the_bigest_low(t_list *stack);
