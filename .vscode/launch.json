@@ -9,9 +9,9 @@
         ""
       ],
       "stopAtEntry": true,
-      "cwd": "/Users/ael-yamo/Desktop/push_swap2",
+      "cwd": "/Users/ael-yamo/Desktop/push_sma",
       "environment": [],
-      "program": "/Users/ael-yamo/Desktop/push_swap2/build/Debug/outDebug",
+      "program": "/Users/ael-yamo/Desktop/push_sma/build/Debug/outDebug",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "lldb",
       "externalConsole": true

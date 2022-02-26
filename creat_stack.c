@@ -64,10 +64,16 @@ t_list *creat_stack(int argc, char **argv)
 	int i = 1;
 
 	stack = NULL;
-	while (argc >= 2)
+	//change this line 
+	if (argc > 1)
 	{
-		add_at_end(&stack, ft_atoi(argv[--argc]));
+		while (i < argc)
+		{
+			add_at_end(&stack, ft_atoi(argv[i]));
+			i++;
+		}
 	}
+
 	return stack;
 }
 
@@ -153,9 +159,12 @@ int	main(int argc, char **argv)
 	// printf("___________________________\n");
 	
 	give_index(&stack_a);
+	// pb(&stack_a, &stack_b);
+	// return 0;
 	push_swap(&stack_a, &stack_b);
 	sort_last_in_a(&stack_a, &stack_b);
 	sort_to_a(&stack_b, &stack_a);
+	// print_stack(stack_a);
 	// arr = helper_small(stack_a);
 	// while (i < 4)
 	// {
@@ -165,7 +174,6 @@ int	main(int argc, char **argv)
 	// printf("pirnting stack A\n");
 	// push_all_to_b(&stack_a, &stack_b);
 	// printf("___________________________\n");
-	// print_stack(stack_a);
 	// printf("___________________________\n");
 	// printf("pirnting stack B\n");
 	// push_all_to_b(&stack_a, &stack_b);
