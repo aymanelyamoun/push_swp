@@ -56,3 +56,11 @@ int	find_the_smallest_low(t_list *stack);
 int	find_the_bigest(t_list *stack);
 int	find_the_bigest_high(t_list *stack);
 int	find_the_bigest_low(t_list *stack);
+
+/*///////////// RADIX ///////////////*/
+
+int stop_looping(t_list *stack, int b_num);
+int has_bite(t_list *stack, int b_num);
+void push_all_trues_to_a(t_list **stack_a, t_list **stack_b, int b_num);
+void sort_using_radix(t_list **stack_a, t_list **stack_b);
+int has_bite_1(t_list *stack, int b_num);
