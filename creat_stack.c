@@ -176,5 +176,5 @@ int	main(int argc, char **argv)
 
 	sort_using_radix(&stack_a, &stack_b);
 	// print_stack(stack_a);
-	print_stack(stack_b);
+	// print_stack(stack_b);
 }

@@ -303,7 +303,7 @@ void sort_to_a(t_list **stack_b, t_list **stack_a)
 	}
 }
 
-///// check the find the biggest return value
+///// check the find biggest return value
 
 /////// sorting with radix;
 
@@ -321,26 +321,43 @@ int stop_looping(t_list *stack, int b_num)
 			return 1;
 		tmp = tmp->next;
 	}
+
 	return 0;
 }
+
+// int has_bite(t_list *stack, int b_num)
+// {
+// 	t_list *tmp;
+
+// 	tmp = stack->next;
+// 	if (!((tmp->index >> b_num) & 1))
+// 		return 1;
+// 	tmp = tmp->next;
+// 	while(tmp != stack->next)
+// 	{
+// 		if (!((tmp->index >> b_num) & 1))
+// 			return 1;
+// 		tmp = tmp->next;
+// 	}
+// 	return 0;
+// }
 
 int has_bite(t_list *stack, int b_num)
 {
 	t_list *tmp;
 
 	tmp = stack->next;
-	if (!(tmp->index & b_num))
+	if ((tmp->index & b_num))
 		return 1;
 	tmp = tmp->next;
 	while(tmp != stack->next)
 	{
-		if (!(tmp->index & b_num))
+		if ((tmp->index & b_num))
 			return 1;
 		tmp = tmp->next;
 	}
 	return 0;
 }
-
 int has_bite_1(t_list *stack, int b_num)
 {
 	t_list *tmp;
@@ -358,45 +375,105 @@ int has_bite_1(t_list *stack, int b_num)
 	return 0;
 }
 
+// int top_non_pushed(t_list *stack, int b_num)
+// {
+// 	t_list *tmp;
+
+// 	tmp = stack->next;
+// 	while((has_bite_1(stack, b_num)))
+// 	{
+// 		if (!((stack)->next->index & b_num))
+// 			return stack->next->index;
+// 		stack = stack->next;
+// 	}
+// 	return -1;
+// }
 void push_all_trues_to_a(t_list **stack_a, t_list **stack_b, int b_num)
 {
 	t_list *tmp;
 	b_num <<= 1;
+	int check;
+	int top;
+
 
 	tmp = (*stack_b)->next;
+	check = 0;
 	while((has_bite_1(*stack_b, b_num)))
 	{
 		if ((*stack_b)->next->index & b_num)
 			pa(stack_b, stack_a);
 		else
+		{
+			if (check == 0)
+			{
+				top = (*stack_b)->next->index;
+				check = 1;
+			}
 			rb(stack_b);
+		}
+	}
+	// while((*stack_b)->next->index != top)
+	// 	rrb(stack_b);
+	while((*stack_b)->index != find_the_smallest(*stack_b))
+	{
+		if (find_the_smallest_high(*stack_b) < find_the_smallest_low(*stack_b))
+			rb(stack_b);
+		else
+			rrb(stack_b);
 	}
 }
 
+int stack_is_sorted(t_list **stack)
+{
+	t_list *tmp;
+
+	tmp = (*stack)->next;
+	while(tmp != *stack)
+	{
+		if (tmp->index > tmp->next->index)
+			return 0;
+		tmp = tmp->next;
+	}
+	return 1;
+}
+
+void push_all_to_a(t_list **stack_a,t_list **stack_b)
+{
+	while(*stack_b != NULL)
+	{
+		pa(stack_b, stack_a);
+	}
+}
 void sort_using_radix(t_list **stack_a, t_list **stack_b)
 {
 	int	index;
 	int	len;
-	int	bite = 1;
-	int	zero_biter;
-	int top;
-
-	//loop over every bite.
+	int	bite = 0;
+	int	zero_biter = 1;
+	int biggest = find_the_bigest(*stack_a);
+	while ((biggest >> bite))
+		bite++;
+	int i = 0;
+		//loop over every bite.
 	//find where to stop.
 
 	//make sure you are working with the index
-	while(stop_looping(*stack_a, bite))
+	while(i < bite)
 	{
-		while(has_bite(*stack_a, bite))
+		len = count_len(*stack_a);
+		while(len--)
 		{
-			if ((*stack_a)->next->index & bite)
+			index = (*stack_a)->next->index;
+			if (((index >> i) & 1) == 1)
 				ra(stack_a);
 			else
 				pb(stack_a, stack_b);
 		}
-		push_all_trues_to_a(stack_a, stack_b, bite);
-		bite = bite << 1;
+		push_all_trues_to_a(stack_a, stack_b, zero_biter);
+		zero_biter <<= 1;
+		i++;
 	}
+	push_all_to_a(stack_a, stack_b);
 }
 
 
