@@ -24,6 +24,7 @@ int	ft_atoi(const char *str);
 int	rotate(t_list **stack);
 void	ra(t_list **stack_a);
 void	rb(t_list **stack_b);
+void	rr(t_list **stack_a, t_list **stack_b);
 int	r_rotate(t_list **stack);
 void	rra(t_list **stack_a);
 void	rrb(t_list **stack_b);
@@ -61,6 +62,6 @@ int	find_the_bigest_low(t_list *stack);
 
 int stop_looping(t_list *stack, int b_num);
 int has_bite(t_list *stack, int b_num);
-void push_all_trues_to_a(t_list **stack_a, t_list **stack_b, int b_num);
+int push_all_trues_to_a(t_list **stack_a, t_list **stack_b, int b_num, int i);
 void sort_using_radix(t_list **stack_a, t_list **stack_b);
 int has_bite_1(t_list *stack, int b_num);

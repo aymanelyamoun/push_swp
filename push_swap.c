@@ -347,12 +347,14 @@ int has_bite(t_list *stack, int b_num)
 	t_list *tmp;
 
 	tmp = stack->next;
-	if ((tmp->index & b_num))
+	if (!(stack->index & b_num))
+		return 1;
+	if (!(tmp->index & b_num))
 		return 1;
 	tmp = tmp->next;
 	while(tmp != stack->next)
 	{
-		if ((tmp->index & b_num))
+		if (!(tmp->index & b_num))
 			return 1;
 		tmp = tmp->next;
 	}
@@ -388,39 +390,43 @@ int has_bite_1(t_list *stack, int b_num)
 // 	}
 // 	return -1;
 // }
-void push_all_trues_to_a(t_list **stack_a, t_list **stack_b, int b_num)
+int push_all_trues_to_a(t_list **stack_a, t_list **stack_b, int b_num, int i)
 {
 	t_list *tmp;
 	b_num <<= 1;
-	int check;
-	int top;
+	int b_num2 = b_num << 1;
+	int index;
+	int rotate_a = 0;
 
-
+	i++;
 	tmp = (*stack_b)->next;
-	check = 0;
-	while((has_bite_1(*stack_b, b_num)))
+	while(has_bite_1(*stack_b, b_num))
 	{
 		if ((*stack_b)->next->index & b_num)
 			pa(stack_b, stack_a);
 		else
 		{
-			if (check == 0)
-			{
-				top = (*stack_b)->next->index;
-				check = 1;
-			}
 			rb(stack_b);
 		}
 	}
-	// while((*stack_b)->next->index != top)
-	// 	rrb(stack_b);
 	while((*stack_b)->index != find_the_smallest(*stack_b))
 	{
-		if (find_the_smallest_high(*stack_b) < find_the_smallest_low(*stack_b))
-			rb(stack_b);
+		// if (find_the_smallest_high(*stack_b) < find_the_smallest_low(*stack_b))
+		if(1)
+		{
+			if (((index >> i) & 1) == 1)
+			{
+				index = (*stack_a)->next->index;
+				rr(stack_a, stack_b);
+				rotate_a++;
+			}
+			else
+				rb(stack_b);
+		}
 		else
 			rrb(stack_b);
 	}
+	return rotate_a;
 }
 
 int stack_is_sorted(t_list **stack)
@@ -450,6 +456,7 @@ void sort_using_radix(t_list **stack_a, t_list **stack_b)
 	int	len;
 	int	bite = 0;
 	int	zero_biter = 1;
+	int rotated;
 	int biggest = find_the_bigest(*stack_a);
 	while ((biggest >> bite))
 		bite++;
@@ -458,18 +465,22 @@ void sort_using_radix(t_list **stack_a, t_list **stack_b)
 	//find where to stop.
 
 	//make sure you are working with the index
+	len = count_len(*stack_a);
 	while(i < bite)
 	{
-		len = count_len(*stack_a);
 		while(len--)
 		{
 			index = (*stack_a)->next->index;
 			if (((index >> i) & 1) == 1)
+			{
+				// if (!has_bite(*stack_a, z))
 				ra(stack_a);
+			}
 			else
 				pb(stack_a, stack_b);
 		}
-		push_all_trues_to_a(stack_a, stack_b, zero_biter);
+		rotated = push_all_trues_to_a(stack_a, stack_b, zero_biter, i);
+		len = count_len(*stack_a) - rotated;
 		zero_biter <<= 1;
 		i++;
 	}

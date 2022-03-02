@@ -29,6 +29,28 @@ void	rb(t_list **stack_b)
 		write(1, "rb\n", 3);
 }
 
+// void	rr(t_list **stack_a, t_list **stack_b)
+// {
+// 	if (rotate(stack_a) && rotate(stack_b))
+// 	{
+// 		write(1, "rr\n", 3);
+// 	}
+// }
+
+void rr(t_list **stack_a, t_list **stack_b)
+{
+	int	check1;
+	int	check2;
+
+	check1 = rotate(stack_a);
+	check2 = rotate(stack_b);
+	if (check1 && check2)
+		write(1, "rr\n", 3);
+	else if (check1)
+		write(1, "ra\n", 3);
+	else if (check2)
+		write(1, "rb\n", 3);
+}
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 /+++++++++++++++++  REVERS ROTATION   ++++++++++++++++++++
