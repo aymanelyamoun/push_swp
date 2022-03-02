@@ -411,9 +411,6 @@ int push_all_trues_to_a(t_list **stack_a, t_list **stack_b, int b_num, int i)
 	}
 	while((*stack_b)->index != find_the_smallest(*stack_b))
 	{
-		// if (find_the_smallest_high(*stack_b) < find_the_smallest_low(*stack_b))
-		if(1)
-		{
 			if (((index >> i) & 1) == 1)
 			{
 				index = (*stack_a)->next->index;
@@ -422,9 +419,6 @@ int push_all_trues_to_a(t_list **stack_a, t_list **stack_b, int b_num, int i)
 			}
 			else
 				rb(stack_b);
-		}
-		else
-			rrb(stack_b);
 	}
 	return rotate_a;
 }
@@ -468,7 +462,7 @@ void sort_using_radix(t_list **stack_a, t_list **stack_b)
 	len = count_len(*stack_a);
 	while(i < bite)
 	{
-		while(len--)
+		while(len-- && (!stack_is_sorted(stack_a)))
 		{
 			index = (*stack_a)->next->index;
 			if (((index >> i) & 1) == 1)
