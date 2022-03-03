@@ -39,6 +39,12 @@ void pb(t_list **stack_a, t_list **stack_b);
 
 /*///////// END PUSHING //////////*/
 
+/*///////// SWAPING //////////////*/
+int swap(t_list **stack);
+void sa(t_list **stack_a);
+void sb(t_list **stack_b);
+/*///////// END SWAPING //////////*/
+
 /*/////// SORTING FUNCTIONS ///////*/
 
 int compare(t_list *stack, int data);
@@ -57,6 +63,8 @@ int	find_the_smallest_low(t_list *stack);
 int	find_the_bigest(t_list *stack);
 int	find_the_bigest_high(t_list *stack);
 int	find_the_bigest_low(t_list *stack);
+void push_all_to_a(t_list **stack_a,t_list **stack_b);
+int has_larger_high(t_list *stack, int num);
 
 /*///////////// RADIX ///////////////*/
 
@@ -65,3 +73,4 @@ int has_bite(t_list *stack, int b_num);
 int push_all_trues_to_a(t_list **stack_a, t_list **stack_b, int b_num, int i);
 void sort_using_radix(t_list **stack_a, t_list **stack_b);
 int has_bite_1(t_list *stack, int b_num);
+int stack_is_sorted(t_list **stack);

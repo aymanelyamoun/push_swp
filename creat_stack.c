@@ -145,6 +145,106 @@ void give_index(t_list **stack)
 }
 
 
+
+void three_nums_sort(t_list **stack_a)
+{
+	int first;
+	int second;
+	int third;
+
+	first = (*stack_a)->next->index;
+	second = (*stack_a)->next->next->index;
+	third = (*stack_a)->index;
+	if (first > second && third > first)
+		sa(stack_a);
+	else if (first < second && first > third)
+		rra(stack_a);
+	else if (first > second && second > third)
+	{
+		sa(stack_a);
+		rra(stack_a);
+	}
+	else if (first > second && first > third && second < third)
+		ra(stack_a);
+	else if (first < second && second > third)
+	{
+		rra(stack_a);
+		sa(stack_a);
+	}
+}
+
+void sort_pushing_the_smallest(t_list **stack_a, t_list **stack_b)
+{
+	int mid;
+	int len;
+
+	mid = count_len(*stack_a)/2;
+	while(!stack_is_sorted(stack_a) && *stack_a != NULL)
+	{
+		len = count_len(*stack_a);
+		if (len == 3)
+			three_nums_sort(stack_a);
+		while(has_smaller_high(*stack_a, mid))
+		{
+			if ((*stack_a)->next->index < mid)
+				pb(stack_a, stack_b);
+			else
+				ra(stack_a);
+		}
+	}
+	if ((*stack_b)->next->index < (*stack_b)->next->next->index)
+		sb(stack_b);
+	push_all_to_a(stack_a, stack_b);
+}
+
+int is_the_smallest(t_list *stack_a, t_list *stack_b)
+{
+	if (has_smaller_high(stack_a, (stack_b)->next->index))
+		return 0;
+	else 
+		return 1;
+}
+int is_the_largest(t_list *stack_a, t_list *stack_b)
+{
+	if (has_larger_high(stack_a, (stack_b)->next->index))
+		return 0;
+	else 
+		return 1;
+}
+void five_nums_sort(t_list **stack_a, t_list **stack_b)
+{
+	int smaller;
+
+	pb(stack_a, stack_b);
+	pb(stack_a, stack_b);
+	three_nums_sort(stack_a);
+	while ((*stack_b) != NULL)
+	{
+		if (is_the_smallest(*stack_a, *stack_b))
+			pa(stack_b, stack_a);
+		if (is_the_largest(*stack_a, *stack_b))
+		{
+			if ((*stack_a)->index == find_the_bigest(*stack_a))
+			{
+				pa(stack_b, stack_a);
+				ra(stack_a);
+			}
+		}
+		else
+		{
+			while(((*stack_a)->next->index > (*stack_b)->next->index) || ((*stack_a)->next->next->index < (*stack_b)->next->index))
+				ra(stack_a);
+			ra(stack_a);
+			pa(stack_b, stack_a);
+		}
+	}
+	while((*stack_a)->next->index != find_the_smallest(*stack_a))
+		rra(stack_a);
+	
+	
+
+}
+
 int	main(int argc, char **argv)
 {
 	t_list *stack_a;
@@ -153,28 +253,11 @@ int	main(int argc, char **argv)
 	int *arr;
 	int i = 0;
 
-	// printf("___________________________\n");
-	// // print_stack_prev(stack_a);
-	// printf("___________________________\n");
-////////////////////////////////////////////////	
-////////////////////////////////////////////////	
-////////////////////////////////////////////////	
-////////////////////////////////////////////////	
+	// if (stack_is_sorted(&stack_a))
+	// 	return 0;
 	give_index(&stack_a);
-	
-	// // pb(&stack_a, &stack_b);
-	// // return 0;
-	// push_swap(&stack_a, &stack_b);
-	// sort_last_in_a(&stack_a, &stack_b);
-	// sort_to_a(&stack_b, &stack_a);
-	// // print_stack(stack_a);
-	
-////////////////////////////////////////////////	
-////////////////////////////////////////////////	
-////////////////////////////////////////////////	
-////////////////////////////////////////////////
-
-	sort_using_radix(&stack_a, &stack_b);
-	// print_stack(stack_a);
-	// print_stack(stack_b);
+	// five_nums_sort(&stack_a, &stack_b);
+	// three_num_sort(&stack_a, &stack_b);
+	sort_pushing_the_smallest(&stack_a, &stack_b);
+	// sort_using_radix(&stack_a, &stack_b);
 }

@@ -26,7 +26,7 @@ int has_smaller_high(t_list *stack, int num)
 	t_list *tmp;
 	int index;
 
-	index = 0;
+	index = 1;
 	tmp = stack->next;
 	if (tmp->index < num)
 		return index;
@@ -39,7 +39,28 @@ int has_smaller_high(t_list *stack, int num)
 		tmp = tmp->next;
 		index++;
 	}
-	return -1;
+	return 0;
+}
+
+int has_larger_high(t_list *stack, int num)
+{
+	t_list *tmp;
+	int index;
+
+	index = 1;
+	tmp = stack->next;
+	if (tmp->index > num)
+		return index;
+	tmp = tmp->next;
+	index++;
+	while (tmp != stack->next)
+	{
+		if (tmp->index > num)
+			return index;
+		tmp = tmp->next;
+		index++;
+	}
+	return 0;
 }
 /*/////////////////////////////*/
 int	find_the_smallest(t_list *stack)
@@ -99,7 +120,7 @@ int	find_the_smallest_low(t_list *stack)
 
 	if (stack != NULL)
 	{
-		index = 1;
+		index = 0;
 		tmp = stack;
 		largest = tmp->index;
 		tmp = tmp->prev;
@@ -455,17 +476,15 @@ void sort_using_radix(t_list **stack_a, t_list **stack_b)
 	while ((biggest >> bite))
 		bite++;
 	int i = 0;
-		//loop over every bite.
-	//find where to stop.
-
-	//make sure you are working with the index
+	t_list *tmp;
 	len = count_len(*stack_a);
+
 	while(i < bite)
 	{
 		while(len-- && (!stack_is_sorted(stack_a)))
 		{
 			index = (*stack_a)->next->index;
-			if (((index >> i) & 1) == 1)
+			if ((((index >> i) & 1) == 1))
 			{
 				// if (!has_bite(*stack_a, z))
 				ra(stack_a);
@@ -473,6 +492,8 @@ void sort_using_radix(t_list **stack_a, t_list **stack_b)
 			else
 				pb(stack_a, stack_b);
 		}
+		//get the smalllest elment to the top
+		//work with has element
 		rotated = push_all_trues_to_a(stack_a, stack_b, zero_biter, i);
 		len = count_len(*stack_a) - rotated;
 		zero_biter <<= 1;
