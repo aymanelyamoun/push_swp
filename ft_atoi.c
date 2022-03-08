@@ -6,15 +6,15 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 11:03:39 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/02/21 17:49:52 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:20:09 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	int	res;
+	long long int	res;
 	int	sign;
 	int	i;
 
@@ -35,6 +35,8 @@ int	ft_atoi(const char *str)
 	{
 		while (str[i] >= '0' && str[i] <= '9' && str[i])
 			res = res * 10 + (str[i++] - '0');
+		if (str[i])
+			return 2147483650;
 	}
 	return (res * sign);
 }

@@ -1,26 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/05 13:31:25 by ael-yamo          #+#    #+#             */
+/*   Updated: 2022/03/08 16:17:36 by ael-yamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int *helper_small(t_list *stack)
-{
-	int len;
-	int chunck_len;
-	int *arr;
-	int i = 0;
-	int prev = 0;
-
-	arr = (int *)malloc(sizeof(int)*5);
-	len = count_len(stack);
-	chunck_len = len / 5;
-	while (i < 4)
-	{
-		prev += chunck_len;
-		arr[i] = prev;
-		i++;
-	}
-	arr[i] = 0;
-	return arr;
-}
-
+/*/////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+////////////////////// SORT HELPERS ///////////////////
+///////////////////////////////////////////////////////
+/////////////////////////////////////////////////////*/
 int has_smaller_high(t_list *stack, int num)
 {
 	t_list *tmp;
@@ -42,345 +38,6 @@ int has_smaller_high(t_list *stack, int num)
 	return 0;
 }
 
-int has_larger_high(t_list *stack, int num)
-{
-	t_list *tmp;
-	int index;
-
-	index = 1;
-	tmp = stack->next;
-	if (tmp->index > num)
-		return index;
-	tmp = tmp->next;
-	index++;
-	while (tmp != stack->next)
-	{
-		if (tmp->index > num)
-			return index;
-		tmp = tmp->next;
-		index++;
-	}
-	return 0;
-}
-/*/////////////////////////////*/
-int	find_the_smallest(t_list *stack)
-{
-	t_list *tmp;
-	int	largest;
-
-	if (stack != NULL)
-	{
-		tmp = stack->next;
-		largest = tmp->index;
-		tmp = tmp->next;
-		while(tmp != stack->next)
-		{
-			if (tmp->index < largest)
-				largest = tmp->index;
-			tmp = tmp->next;
-		}
-		return largest;
-	}
-	else
-		return -1;
-}
-
-int	find_the_smallest_high(t_list *stack)
-{
-	t_list *tmp;
-	int	largest;
-	int index;
-
-	if (stack != NULL)
-	{
-		index = 0;
-		tmp = stack->next;
-		largest = tmp->index;
-		tmp = tmp->next;
-		while(tmp != stack->next)
-		{
-			if (tmp->index < largest)
-			{
-				largest = tmp->index;
-			}
-			index++;
-			tmp = tmp->next;
-		}
-		return index;
-	}
-	else
-		return -1;
-}
-
-int	find_the_smallest_low(t_list *stack)
-{
-	t_list *tmp;
-	int	largest;
-	int index;
-
-	if (stack != NULL)
-	{
-		index = 0;
-		tmp = stack;
-		largest = tmp->index;
-		tmp = tmp->prev;
-		while(tmp != stack)
-		{
-			if (tmp->index < largest)
-			{
-				largest = tmp->index;
-			}
-			index++;
-			tmp = tmp->prev;
-		}
-		return index;
-	}
-	else
-		return -1;
-}
-/*/////////////////////////////*/
-int	find_the_bigest(t_list *stack)
-{
-	t_list *tmp;
-	int	largest;
-
-	if (stack != NULL)
-	{
-		tmp = stack->next;
-		largest = tmp->index;
-		tmp = tmp->next;
-		while(tmp != stack->next)
-		{
-			if (tmp->index > largest)
-				largest = tmp->index;
-			tmp = tmp->next;
-		}
-		return largest;
-	}
-	else
-		return -1;
-}
-
-int	find_the_bigest_high(t_list *stack)
-{
-	t_list *tmp;
-	int	largest;
-	int index;
-
-	if (stack != NULL)
-	{
-		index = 0;
-		tmp = stack->next;
-		largest = tmp->index;
-		tmp = tmp->next;
-		while(tmp != stack->next)
-		{
-			if (tmp->index > largest)
-			{
-				largest = tmp->index;
-				index++;
-			}
-			tmp = tmp->next;
-		}
-		return index;
-	}
-	else
-		return -1;
-}
-
-int	find_the_bigest_low(t_list *stack)
-{
-	t_list *tmp;
-	int	largest;
-	int index;
-
-	if (stack != NULL)
-	{
-		index = 0;
-		tmp = stack;
-		largest = tmp->index;
-		tmp = tmp->prev;
-		while(tmp != stack)
-		{
-			if (tmp->index > largest)
-			{
-				largest = tmp->index;
-				index++;
-			}
-			tmp = tmp->prev;
-		}
-		return index;
-	}
-	else
-		return -1;
-}
-/*//////////////////////////////*/
-
-int has_smaller_low(t_list *stack, int num)
-{
-	t_list *tmp;
-	int index;
-
-	tmp = stack;
-	index = count_len(stack);
-	if (tmp->index < num)
-		return index;
-	tmp = tmp->prev;
-	index--;
-	while (tmp != stack)
-	{
-		if (tmp->index < num)
-			return index;
-		tmp = tmp->prev;
-		index--;
-	}
-	return -1;
-}
-
-void push_swap(t_list **stack_a, t_list **stack_b)
-{
-	int incrementer;
-	int	*arr;
-	int i;
-	// static int counter = 1;
-
-	i = 0;
-	arr = helper_small((*stack_a));
-	while (i < 4)
-	{
-		while (has_smaller_high(*stack_a, arr[i]) != -1)
-		{
-			// claculat from the bottom;
-			if (has_smaller_high(*stack_a, arr[i]) < has_smaller_low(*stack_a, arr[i]))
-			{
-				while((*stack_a)->next->index >= arr[i])
-					ra(stack_a);
-				pb(stack_a, stack_b);
-			}
-			else
-			{
-				while((*stack_a)->next->index >= arr[i])
-					rra(stack_a);
-				pb(stack_a, stack_b);
-			}
-		}
-		i++;
-	}
-	
-}
-void sort_last_in_a(t_list **stack_a, t_list **stack_b)
-{
-	int largest;
-
-	while(*stack_a != NULL)
-	{
-		largest = find_the_smallest(*stack_a);
-		while((*stack_a)->next->index != largest)
-		{
-			if (find_the_smallest_high(*stack_a) < find_the_smallest_low(*stack_b))
-			{
-				while((*stack_a)->next->index != largest)
-				{
-					ra(stack_a);
-				}
-			}
-			else
-			{
-				while((*stack_a)->next->index != largest)
-				{
-					rra(stack_a);
-				}
-			}
-		}
-		pb(stack_a, stack_b);
-	}
-}
-//kinda sus
-void sort_to_a(t_list **stack_b, t_list **stack_a)
-{
-	int largest;
-
-	while(*stack_b != NULL)
-	{
-		largest = find_the_bigest(*stack_b);
-		while((*stack_b)->next->index != largest)
-		{
-			if (find_the_bigest_high(*stack_b) < find_the_bigest_low(*stack_b))
-			{
-				while((*stack_b)->next->index != largest)
-				{
-					rb(stack_b);
-				}
-			}
-			else
-			{
-				while((*stack_b)->next->index != largest)
-				{
-					rrb(stack_b);
-				}
-			}
-		}
-		pa(stack_b, stack_a);
-	}
-}
-
-///// check the find biggest return value
-
-/////// sorting with radix;
-
-int stop_looping(t_list *stack, int b_num)
-{
-	t_list *tmp;
-
-	tmp = stack->next;
-	if ((tmp->index & b_num))
-		return 1;
-	tmp = tmp->next;
-	while(tmp != stack->next)
-	{
-		if ((tmp->index & b_num))
-			return 1;
-		tmp = tmp->next;
-	}
-
-	return 0;
-}
-
-// int has_bite(t_list *stack, int b_num)
-// {
-// 	t_list *tmp;
-
-// 	tmp = stack->next;
-// 	if (!((tmp->index >> b_num) & 1))
-// 		return 1;
-// 	tmp = tmp->next;
-// 	while(tmp != stack->next)
-// 	{
-// 		if (!((tmp->index >> b_num) & 1))
-// 			return 1;
-// 		tmp = tmp->next;
-// 	}
-// 	return 0;
-// }
-
-int has_bite(t_list *stack, int b_num)
-{
-	t_list *tmp;
-
-	tmp = stack->next;
-	if (!(stack->index & b_num))
-		return 1;
-	if (!(tmp->index & b_num))
-		return 1;
-	tmp = tmp->next;
-	while(tmp != stack->next)
-	{
-		if (!(tmp->index & b_num))
-			return 1;
-		tmp = tmp->next;
-	}
-	return 0;
-}
 int has_bite_1(t_list *stack, int b_num)
 {
 	t_list *tmp;
@@ -389,7 +46,7 @@ int has_bite_1(t_list *stack, int b_num)
 	if ((tmp->index & b_num))
 		return 1;
 	tmp = tmp->next;
-	while(tmp != stack->next)
+	while (tmp != stack->next)
 	{
 		if ((tmp->index & b_num))
 			return 1;
@@ -398,50 +55,48 @@ int has_bite_1(t_list *stack, int b_num)
 	return 0;
 }
 
-// int top_non_pushed(t_list *stack, int b_num)
-// {
-// 	t_list *tmp;
-
-// 	tmp = stack->next;
-// 	while((has_bite_1(stack, b_num)))
-// 	{
-// 		if (!((stack)->next->index & b_num))
-// 			return stack->next->index;
-// 		stack = stack->next;
-// 	}
-// 	return -1;
-// }
-int push_all_trues_to_a(t_list **stack_a, t_list **stack_b, int b_num, int i)
+int find_the_smallest(t_list *stack)
 {
 	t_list *tmp;
-	b_num <<= 1;
-	int b_num2 = b_num << 1;
-	int index;
-	int rotate_a = 0;
+	int largest;
 
-	i++;
-	tmp = (*stack_b)->next;
-	while(has_bite_1(*stack_b, b_num))
+	if (stack != NULL)
 	{
-		if ((*stack_b)->next->index & b_num)
-			pa(stack_b, stack_a);
-		else
+		tmp = stack->next;
+		largest = tmp->index;
+		tmp = tmp->next;
+		while (tmp != stack->next)
 		{
-			rb(stack_b);
+			if (tmp->index < largest)
+				largest = tmp->index;
+			tmp = tmp->next;
 		}
+		return largest;
 	}
-	while((*stack_b)->index != find_the_smallest(*stack_b))
+	else
+		return -1;
+}
+
+int find_the_bigest(t_list *stack)
+{
+	t_list *tmp;
+	int largest;
+
+	if (stack != NULL)
 	{
-			if (((index >> i) & 1) == 1)
-			{
-				index = (*stack_a)->next->index;
-				rr(stack_a, stack_b);
-				rotate_a++;
-			}
-			else
-				rb(stack_b);
+		tmp = stack->next;
+		largest = tmp->index;
+		tmp = tmp->next;
+		while (tmp != stack->next)
+		{
+			if (tmp->index > largest)
+				largest = tmp->index;
+			tmp = tmp->next;
+		}
+		return largest;
 	}
-	return rotate_a;
+	else
+		return -1;
 }
 
 int stack_is_sorted(t_list **stack)
@@ -449,7 +104,7 @@ int stack_is_sorted(t_list **stack)
 	t_list *tmp;
 
 	tmp = (*stack)->next;
-	while(tmp != *stack)
+	while (tmp != *stack)
 	{
 		if (tmp->index > tmp->next->index)
 			return 0;
@@ -458,50 +113,135 @@ int stack_is_sorted(t_list **stack)
 	return 1;
 }
 
-void push_all_to_a(t_list **stack_a,t_list **stack_b)
+int push_trues(t_list **stack_a, t_list **stack_b, int b_num, int i)
 {
-	while(*stack_b != NULL)
-	{
-		pa(stack_b, stack_a);
-	}
-}
-void sort_using_radix(t_list **stack_a, t_list **stack_b)
-{
-	int	index;
-	int	len;
-	int	bite = 0;
-	int	zero_biter = 1;
-	int rotated;
-	int biggest = find_the_bigest(*stack_a);
-	while ((biggest >> bite))
-		bite++;
-	int i = 0;
-	t_list *tmp;
-	len = count_len(*stack_a);
+	b_num <<= 1;
+	int index;
+	int rotate_a = 0;
 
-	while(i < bite)
+	i++;
+	while (has_bite_1(*stack_b, b_num))
 	{
-		while(len-- && (!stack_is_sorted(stack_a)))
+		if ((*stack_b)->next->index & b_num)
+			pa(stack_b, stack_a);
+		else
+			rb(stack_b);
+	}
+	while ((*stack_b)->index != find_the_smallest(*stack_b))
+	{
+		if (((index >> i) & 1) == 1)
 		{
 			index = (*stack_a)->next->index;
-			if ((((index >> i) & 1) == 1))
-			{
-				// if (!has_bite(*stack_a, z))
+			rr(stack_a, stack_b);
+			rotate_a++;
+		}
+		else
+			rb(stack_b);
+	}
+	return rotate_a;
+}
+
+void push_all_to_a(t_list **stack_a, t_list **stack_b)
+{
+	while (*stack_b != NULL)
+		pa(stack_b, stack_a);
+}
+
+/*/////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+/////////////////// SIMPLE SORTS //////////////////////
+///////////////////////////////////////////////////////
+/////////////////////////////////////////////////////*/
+
+void three_nums_sort(t_list **stack_a)
+{
+	int first;
+	int second;
+	int third;
+
+	first = (*stack_a)->next->index;
+	second = (*stack_a)->next->next->index;
+	third = (*stack_a)->index;
+	if (first > second && third > first)
+		sa(stack_a);
+	else if (first < second && first > third)
+		rra(stack_a);
+	else if (first > second && second > third)
+	{
+		sa(stack_a);
+		rra(stack_a);
+	}
+	else if (first > second && first > third && second < third)
+		ra(stack_a);
+	else if (first < second && second > third)
+	{
+		rra(stack_a);
+		sa(stack_a);
+	}
+}
+
+void sort_pushing_the_smallest(t_list **stack_a, t_list **stack_b)
+{
+	int mid;
+	int len;
+
+	mid = count_len(*stack_a) / 2;
+	while (!stack_is_sorted(stack_a) && *stack_a != NULL)
+	{
+		len = count_len(*stack_a);
+		if (len == 3)
+			three_nums_sort(stack_a);
+		while (has_smaller_high(*stack_a, mid))
+		{
+			if ((*stack_a)->next->index < mid)
+				pb(stack_a, stack_b);
+			else
 				ra(stack_a);
-			}
+		}
+	}
+	if ((*stack_b)->next->index < (*stack_b)->next->next->index)
+		sb(stack_b);
+	push_all_to_a(stack_a, stack_b);
+}
+/*///////////////////////////////////*/
+/*/////////// RADIX SORT ///////////*/
+/*/////////////////////////////////*/
+
+static void radix_utils(t_list **stack_a, t_list **stack_b, int bite, int len)
+{
+	int i;
+	int zero_biter;
+
+	i = 0;
+	zero_biter = 1;
+	while (i < bite)
+	{
+		while (len-- && (!stack_is_sorted(stack_a)))
+		{
+			if (((((*stack_a)->next->index >> i) & 1) == 1))
+				ra(stack_a);
 			else
 				pb(stack_a, stack_b);
 		}
-		//get the smalllest elment to the top
-		//work with has element
-		rotated = push_all_trues_to_a(stack_a, stack_b, zero_biter, i);
-		len = count_len(*stack_a) - rotated;
+		len = -(push_trues(stack_a, stack_b, zero_biter, i)) + count_len(*stack_a);
 		zero_biter <<= 1;
 		i++;
 	}
-	push_all_to_a(stack_a, stack_b);
 }
 
+void sort_using_radix(t_list **stack_a, t_list **stack_b)
+{
+	int len;
+	int bite;
+	int zero_biter;
+	int biggest;
 
-
-
+	bite = 0;
+	zero_biter = 1;
+	biggest = find_the_bigest(*stack_a);
+	while ((biggest >> bite))
+		bite++;
+	len = count_len(*stack_a);
+	radix_utils(stack_a, stack_b, bite, len);
+	push_all_to_a(stack_a, stack_b);
+}
