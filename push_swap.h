@@ -6,7 +6,7 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 15:45:10 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/08 16:18:57 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/09 14:14:06 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void		rrb(t_list **stack_b);
 
 /*///////// PUSHING //////////////*/
 
+void		push_utils(t_list **from, t_list **to, t_list **tmp);
 int			push(t_list **from, t_list **to);
 void		pa(t_list **stack_b, t_list **stack_a);
 void		pb(t_list **stack_a, t_list **stack_b);

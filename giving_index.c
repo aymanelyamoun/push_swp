@@ -6,13 +6,13 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:29:45 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/08 16:29:55 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/09 09:36:18 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int compare(t_list *stack, int data)
+int	compare(t_list *stack, int data)
 {
 	t_list	*tmp;
 	int		index;

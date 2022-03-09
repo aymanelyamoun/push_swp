@@ -1,22 +1,34 @@
-#include "push_swap.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/09 13:45:33 by ael-yamo          #+#    #+#             */
+/*   Updated: 2022/03/09 14:36:18 by ael-yamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int check(t_list **stack_a, int argc, char **argv)
+#include "push_swap.h"
+
+int	check(t_list **stack_a, int argc, char **argv)
 {
-	long long int check;
+	long long	check;
 
 	*stack_a = creat_stack(argc, argv, &check);
 	if ((*stack_a == NULL && check == -1))
-		return 1;
+		return (1);
 	give_index(stack_a, &check);
 	if (check == -1)
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
-void free_stack(t_list **stack)
+void	free_stack(t_list **stack)
 {
-	t_list *delete;
+	t_list	*delete;
+
 	while (*stack != NULL)
 	{
 		if (count_len(*stack) == 1)
@@ -33,12 +45,12 @@ void free_stack(t_list **stack)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_list *stack_a;
-	t_list *stack_b;
-	int *arr;
-	int i;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	int		*arr;
+	int		i;
 
 	i = 0;
 	if (argc > 1)
@@ -59,5 +71,5 @@ int main(int argc, char **argv)
 			free_stack(&stack_a);
 		}
 	}
-	return 0;
+	return (0);
 }
