@@ -6,7 +6,7 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 15:45:10 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/09 14:14:06 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:15:01 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ void		rr(t_list **stack_a, t_list **stack_b);
 int			r_rotate(t_list **stack);
 void		rra(t_list **stack_a);
 void		rrb(t_list **stack_b);
+void		rrr(t_list **stack_a, t_list **stack_b);
 
 /*///////// END ROTATION /////////*/
 
 /*///////// PUSHING //////////////*/
 
-void		push_utils(t_list **from, t_list **to, t_list **tmp);
+void		push_utils(t_list **to, t_list **tmp);
 int			push(t_list **from, t_list **to);
 void		pa(t_list **stack_b, t_list **stack_a);
 void		pb(t_list **stack_a, t_list **stack_b);
@@ -59,6 +60,7 @@ void		pb(t_list **stack_a, t_list **stack_b);
 int			swap(t_list **stack);
 void		sa(t_list **stack_a);
 void		sb(t_list **stack_b);
+void		ss(t_list **stack_a, t_list **stack_b);
 /*///////// END SWAPING //////////*/
 
 /*///////// SMALL SORTS ///////////*/
@@ -93,4 +95,17 @@ int			push_trues(t_list **stack_a, t_list **stack_b, int b_num, int i);
 void		sort_using_radix(t_list **stack_a, t_list **stack_b);
 int			has_bite_1(t_list *stack, int b_num);
 int			stack_is_sorted(t_list **stack);
+/*///////////// CHECKER OP ///////////*/
+void		ch_pa(t_list **stack_b, t_list **stack_a);
+void		ch_pb(t_list **stack_a, t_list **stack_b);
+void		ch_rra(t_list **stack_a);
+void		ch_rrb(t_list **stack_b);
+void		ch_rrr(t_list **stack_a, t_list **stack_b);
+void		ch_ra(t_list **stack_a);
+void		ch_rb(t_list **stack_b);
+void		ch_rr(t_list **stack_a, t_list **stack_b);
+void		ch_sa(t_list **stack_a);
+void		ch_sb(t_list **stack_b);
+void		ch_ss(t_list **stack_a, t_list **stack_b);
+void	print_stack(t_list *stack);
 #endif

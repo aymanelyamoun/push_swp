@@ -16,6 +16,7 @@
   "C_Cpp_Runner.enableWarnings": true,
   "C_Cpp_Runner.warningsAsError": false,
   "files.associations": {
-    "push_swap.h": "c"
+    "push_swap.h": "c",
+    "get_next_line.h": "c"
   }
 }

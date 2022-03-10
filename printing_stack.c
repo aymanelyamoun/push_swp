@@ -6,11 +6,12 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:28:04 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/08 16:28:24 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:15:57 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	print_stack(t_list *stack)
 {
@@ -19,7 +20,7 @@ void	print_stack(t_list *stack)
 	if (stack == NULL)
 		return ;
 	tmp = stack->next;
-	ft_printf("%d ----> index: %d\n", tmp->data, tmp->index);
+	printf("%d ----> index: %d\n", tmp->data, tmp->index);
 	tmp = tmp->next;
 	while (tmp != stack->next)
 	{
@@ -35,11 +36,11 @@ void	print_stack_prev(t_list *stack)
 	if (stack == NULL)
 		return ;
 	tmp = stack;
-	ft_printf("%d\n", tmp->data);
+	printf("%d\n", tmp->data);
 	tmp = tmp->prev;
 	while (tmp != stack)
 	{
-		ft_printf("%d\n", tmp->data);
+		printf("%d\n", tmp->data);
 		tmp = tmp->prev;
 	}
 }

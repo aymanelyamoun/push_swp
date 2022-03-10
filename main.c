@@ -6,11 +6,40 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:45:33 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/09 14:36:18 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:04:48 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+long long	ft_atoi(const char *str)
+{
+	long long	res;
+	int			sign;
+	int			i;
+
+	res = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == '\n' || str[i] == '\t'
+		|| str[i] == '\r' || str[i] == ' '
+		|| str[i] == '\f' || str[i] == '\v')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -sign;
+		i++;
+	}
+	if (str[i])
+	{
+		while (str[i] >= '0' && str[i] <= '9' && str[i])
+			res = res * 10 + (str[i++] - '0');
+		if (str[i])
+			return (2147483650);
+	}
+	return (res * sign);
+}
 
 int	check(t_list **stack_a, int argc, char **argv)
 {
@@ -49,7 +78,6 @@ int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
-	int		*arr;
 	int		i;
 
 	i = 0;

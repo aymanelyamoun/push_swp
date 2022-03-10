@@ -6,7 +6,7 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:21:54 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/08 16:29:24 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:31:19 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	count_len(t_list *stack)
 void	add_at_end(t_list **stack, int data)
 {
 	t_list	*tmp;
-	t_list	*end;
 
 	if (*stack == NULL)
 	{

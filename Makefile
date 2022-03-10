@@ -1,19 +1,33 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/10 13:23:42 by ael-yamo          #+#    #+#              #
+#    Updated: 2022/03/10 21:38:01 by ael-yamo         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = cc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 NAME = push_swap
-FILES = creat_stack.c ft_atoi.c giving_index.c main.c printing_stack.c \
-push_swap.c r_rotate.c rotate.c sort_utils.c sort_utils2.c swap.c push.c
-OBJ = creat_stack.o ft_atoi.o giving_index.o main.o printing_stack.o \
-push_swap.o r_rotate.o rotate.o sort_utils.o sort_utils2.o swap.o push.o
+FILES =  main.c push_swap.c creat_stack.c giving_index.c \
+op_r_rotate.c op_rotate.c op_swap.c op_push.c sort_utils.c sort_utils2.c 
+OBJ = $(FILES:.c=.o)
 
 .PHONY: all fclean clean re
 all: ${NAME}
+
 ${NAME}: ${OBJ}
 	${CC} ${FLAGS} ${OBJ} -o ${NAME}
-${OBJ}: ${FILES}
-	${CC} ${FLAGS} ${FILES} -c
+	
+%.o: %.c push_swap.h
+	${CC} ${FLAGS} -c $< -o $@
 clean:
 	${RM} ${OBJ}
 fclean: clean
 	${RM} ${NAME}
+re: fclean all

@@ -6,13 +6,13 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:53:51 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/09 15:04:01 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:32:53 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_utils(t_list **from, t_list **to, t_list **tmp)
+void	push_utils(t_list **to, t_list **tmp)
 {
 	if (count_len(*to) == 0)
 	{
@@ -43,7 +43,7 @@ int	push(t_list **from, t_list **to)
 		(*from)->next->next->prev = (*from);
 		(*from)->next = (*from)->next->next;
 	}
-	push_utils(from, to, &tmp);
+	push_utils(to, &tmp);
 	return (1);
 }
 

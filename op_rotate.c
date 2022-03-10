@@ -6,7 +6,7 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:52:38 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/09 15:04:34 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:25:20 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,4 @@ void	rr(t_list **stack_a, t_list **stack_b)
 	else if (check2)
 		write(1, "rb\n", 3);
 }
+

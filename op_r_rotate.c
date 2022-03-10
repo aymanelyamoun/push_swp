@@ -6,7 +6,7 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:56:54 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/09 18:10:17 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:27:31 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,18 @@ void	rrb(t_list **stack_b)
 	if (r_rotate(stack_b))
 		write(1, "rrb\n", 4);
 }
+void	rrr(t_list **stack_a, t_list **stack_b)
+{
+	int	check1;
+	int	check2;
+
+	check1 = r_rotate(stack_a);
+	check2 = r_rotate(stack_b);
+	if (check1 && check2)
+		write(1, "rrr\n", 4);
+	else if (check1)
+		write(1, "rra\n", 4);
+	else if (check2)
+		write(1, "rrb\n", 4);
+}
+
