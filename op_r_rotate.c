@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   r_rotate.c                                         :+:      :+:    :+:   */
+/*   op_r_rotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:56:54 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/10 21:27:31 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/11 12:07:42 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	rrb(t_list **stack_b)
 	if (r_rotate(stack_b))
 		write(1, "rrb\n", 4);
 }
+
 void	rrr(t_list **stack_a, t_list **stack_b)
 {
 	int	check1;
@@ -47,4 +48,3 @@ void	rrr(t_list **stack_a, t_list **stack_b)
 	else if (check2)
 		write(1, "rrb\n", 4);
 }
-

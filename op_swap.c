@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   op_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:55:44 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/10 21:21:39 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/11 12:09:25 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ void	sb(t_list **stack_b)
 	if (swap(stack_b))
 		write(1, "sb\n", 3);
 }
-void ss(t_list **stack_a, t_list **stack_b)
+
+void	ss(t_list **stack_a, t_list **stack_b)
 {
-	int check1;
-	int check2;
+	int	check1;
+	int	check2;
 
 	check1 = swap(stack_a);
 	check2 = swap(stack_b);

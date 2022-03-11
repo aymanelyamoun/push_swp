@@ -6,7 +6,7 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 15:45:10 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/10 22:15:01 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/11 11:59:04 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ struct s_list
 typedef struct s_list	t_list;
 int			count_len(t_list *stack);
 t_list		*creat_stack(int argc, char **argv, long long int *check);
+void		free_stack(t_list **stack);
+int			check(t_list **stack_a, int argc, char **argv);
 /*///////// END LIST RELATED //////////*/
 
 long long	ft_atoi(const char *str);
@@ -107,5 +109,5 @@ void		ch_rr(t_list **stack_a, t_list **stack_b);
 void		ch_sa(t_list **stack_a);
 void		ch_sb(t_list **stack_b);
 void		ch_ss(t_list **stack_a, t_list **stack_b);
-void	print_stack(t_list *stack);
+void		print_stack(t_list *stack);
 #endif
