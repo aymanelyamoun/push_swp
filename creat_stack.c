@@ -6,7 +6,7 @@
 /*   By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:21:54 by ael-yamo          #+#    #+#             */
-/*   Updated: 2022/03/09 20:31:19 by ael-yamo         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:04:20 by ael-yamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,3 @@ t_list	*creat_stack(int argc, char **argv, long long int *check)
 	}
 	return (stack);
 }
-
-//Sadi9i nssiti login ta3k mktob bla madir login
