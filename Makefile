@@ -6,7 +6,7 @@
 #    By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 13:23:42 by ael-yamo          #+#    #+#              #
-#    Updated: 2022/03/11 13:06:03 by ael-yamo         ###   ########.fr        #
+#    Updated: 2022/03/11 14:56:10 by ael-yamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,12 @@ RM = rm -rf
 NAME = push_swap
 BONUS = checker
 
-FILES =  main.c push_swap.c creat_stack.c giving_index.c creat_stack_utils.c\
+FILES = main.c push_swap.c creat_stack.c giving_index.c creat_stack_utils.c \
 op_r_rotate.c op_rotate.c op_swap.c op_push.c sort_utils.c sort_utils2.c 
 OBJ = $(FILES:.c=.o)
 BONUS_FILES = ch_r_rotate.c ch_rotate.c ch_swap.c ch_push.c checker.c \
-creat_stack.c giving_index.c creat_stack_utils.c\
-op_r_rotate.c op_rotate.c op_swap.c op_push.c sort_utils.c\
+creat_stack.c giving_index.c creat_stack_utils.c \
+op_r_rotate.c op_rotate.c op_swap.c op_push.c sort_utils.c \
 get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 BONUS_OBJ = $(BONUS_FILES:.c=.o)
 
@@ -35,8 +35,7 @@ ${NAME}: ${OBJ}
 %.o: %.c push_swap.h
 	${CC} ${FLAGS} -c $< -o $@
 
-bonus: ${BONUS}
-${BONUS}: ${BONUS_OBJ} get_next_line/get_next_line.h
+bonus: ${BONUS_OBJ} get_next_line/get_next_line.h
 	${CC} ${FLAGS} ${BONUS_OBJ} -o ${BONUS}
 clean:
 	${RM} ${OBJ}
