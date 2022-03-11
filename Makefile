@@ -6,7 +6,7 @@
 #    By: ael-yamo <ael-yamo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 13:23:42 by ael-yamo          #+#    #+#              #
-#    Updated: 2022/03/11 14:56:10 by ael-yamo         ###   ########.fr        #
+#    Updated: 2022/03/11 15:01:30 by ael-yamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,4 +43,5 @@ clean:
 	
 fclean: clean
 	${RM} ${NAME}
+	${RM} ${BONUS}
 re: fclean all
